@@ -1,33 +1,34 @@
-# NodeJS JWT Authentication sample
+# Slingshot Store Server
 
-This is a NodeJS API that supports username and password authentication with JWTs.
+This is a NodeJS API that is used for the [Slingshot Sagas](https://github.com/nibblesnbits/slingshot-sagas) demo.
 
 ## Available APIs
 
-### User APIs
+### Product APIs
 
-#### POST `/sessions/create`
+#### GET `api/products`
 
-You can do a POST to `/sessions/create` to log a user in.
+Returns an array of all products
 
-The body must have:
+#### GET `api/products/:id`
 
-* `username`: The username
-* `password`: The password
+Returns the product with the specfied Id
 
-It returns the following:
+#### GET `api/products/count`
 
-```json
-{
-  "access_token": {jwt}
-}
-```
+Returns the count of all products
 
-The JWT is signed with the secret located at the `config.json` file. That JWT will contain the `username` and the `extra` information that you sent at signup time.#### POST `/sessions/create`
+#### POST `api/products`
 
-#### GET `/api/protected`
+Create a new product with the properties specified in the body
 
-You can do a GET to `/api/protected` to ensure your token is valid.  It returns an empty `200` response if the token is still valid.
+#### PUT `api/products/:id`
+
+Updates the product with the specified Id
+
+#### DELETE `api/products/:id`
+
+Deletes the product with the specified Id
 
 ## License
 
