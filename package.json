@@ -1,5 +1,5 @@
 {
-  "name": "jwt-server",
+  "name": "slingshot-store-server",
   "private": true,
   "version": "0.1.0",
   "description": "A simple server for storing product information",
