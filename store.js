@@ -47,10 +47,9 @@ app.post('/api/products', (req, res) => {
   });
 });
 
-app.put('/api/products/:id', (req, res) => {
-  findProductById(req.params.id).then(p => {
+app.put('/api/products', (req, res) => {
+  findProductById(req.body.id).then(p => {
     products.remove({ id: p.id }).then(() => {
-      req.body.id = +req.params.id;
       return products.insert(req.body).then(newProduct=> {
         return res.status(200).json(newProduct);
       });
@@ -67,7 +66,7 @@ app.delete('/api/products/:id', (req, res) => {
     if (!p.length) {
       return res.status(404).json({ message: `Product with id of ${req.params.id} not found`});
     }
-    return res.status(200).end();
+    return res.status(200).json(p[0]);
   }).catch(err => {
     return res.status(500).json(err);
   });
