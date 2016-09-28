@@ -35,6 +35,15 @@ app.get('/api/products/:id', (req, res) => {
   });
 });
 
+app.post('/api/cart/products', (req, res) => {
+  products.find({}).then(list => {
+    const matchingProducts = list.filter(p => req.body.filter(id => id === p.id).length);
+    return res.status(200).json(matchingProducts);
+  }).catch(err => {
+    return res.status(404).json({ message: err.message });
+  });
+});
+
 app.post('/api/products', (req, res) => {
   products.find({}).then(list => {
     const maxId = Math.max.apply(Math, list.map(p => p.id));
